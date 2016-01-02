@@ -40,7 +40,7 @@ describe('time-based-map-reduce', function() {
 
         }
 
-        function convertBucketKeyToDate([bucket, key]) {
+        function lastPossibleMilliInBucket([bucket, key]) {
             if (bucket == 'c') {
                 return key;
             }
@@ -65,7 +65,7 @@ describe('time-based-map-reduce', function() {
         }
 
         let storage = getSm();
-        let tbmr = new TimeBasedMapReduce({storage, getDate, convertBucketKeyToDate, getKeysWithin, reducer});
+        let tbmr = new TimeBasedMapReduce({storage, getDate, lastPossibleMilliInBucket, getKeysWithin, reducer});
 
         return Promise.all([
             tbmr.set(['c', 5], 4),

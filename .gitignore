@@ -1,6 +1,5 @@
 node_modules/
-/MemoryExchange.js
-/SQSExchange.js
-/Advancer.js
-/Visualize.js
+/index.js
+/Constants.js
+/storage-memory.js
 /npm-debug.log

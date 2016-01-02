@@ -1,9 +1,9 @@
 import R from 'ramda';
 
 export default class TimeBasedMapReduce {
-    constructor({storage, getDate, convertBucketKeyToDate, getKeysWithin, reducer}) {
+    constructor({storage, getDate, lastPossibleMilliInBucket, getKeysWithin, reducer}) {
         this._storage = storage;
-        this._convertBucketKeyToDate = convertBucketKeyToDate;
+        this._lastPossibleMilliInBucket = lastPossibleMilliInBucket;
         this._getDate = getDate;
         this._getKeysWithin = getKeysWithin;
         this._reducer = reducer;
@@ -15,7 +15,7 @@ export default class TimeBasedMapReduce {
 
     get([bucket, key]) {
         let nowT = this._getDate().getTime(),
-            bkT = this._convertBucketKeyToDate([bucket, key]);
+            bkT = this._lastPossibleMilliInBucket([bucket, key]);
         if (bkT instanceof Date) {
             bkT = bkT.getTime();
         }

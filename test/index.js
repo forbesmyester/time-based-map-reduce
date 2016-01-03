@@ -52,6 +52,7 @@ describe('time-based-map-reduce', function() {
          * first.
          */
         function reducer(acc, item) {
+            expect(item).to.not.equal(null);
             if (acc === null) {
                 acc = 0;
             }
@@ -101,7 +102,7 @@ describe('time-based-map-reduce', function() {
                 tbmr.get(['b', 3])
             ]);
         }).then(([b0, b1, b2, b3]) => {
-            expect([b0, b1, b2, b3]).to.eql([0, 13, 7, undefined]);
+            expect([b0, b1, b2, b3]).to.eql([null, 13, 7, undefined]);
         }).then(done, done);
 
     });

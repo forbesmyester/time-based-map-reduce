@@ -44,7 +44,7 @@ export default class TimeBasedMapReduce {
                 let result = R.reduce(
                     this._reducer,
                     null,
-                    values
+                    R.filter((v) => { return (v !== null); }, values)
                 );
                 return this._storage.set([bucket, key], result)
                     .then(() => {

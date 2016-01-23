@@ -1,6 +1,6 @@
 {
   "name": "time-based-map-reduce",
-  "version": "0.5.3",
+  "version": "0.5.4",
   "description": "A time based information framework",
   "scripts": {
     "test": "node_modules/.bin/eslint test/*.js src/*.js && mocha --compilers js:babel/register",

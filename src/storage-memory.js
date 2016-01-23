@@ -13,16 +13,17 @@ export default function(/* here you pass in instances to db connections etc */) 
         return new Promise((resolve) => {
             let d = R.path([bucket, key], data);
             if (d === undefined) {
-                return resolve(null);
+                return resolve([ false, null ]);
             }
-            resolve(d);
+            resolve([true, d]);
         });
     }
 
     function set([bucket, key], value) {
+        // console.log("SET: ", [bucket, key], value);
         return get([bucket, key])
-            .then((stored) => {
-                if (stored == undefined) {
+            .then(([found, stored]) => {
+                if (!found) {
                     data = R.assocPath([bucket, key], value, data);
                     return STORED;
                 }
@@ -30,5 +31,7 @@ export default function(/* here you pass in instances to db connections etc */) 
             });
     }
 
-    return { get, set };
+    function _all() { return data; }
+
+    return { get, set, _all };
 }

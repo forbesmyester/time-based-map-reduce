@@ -13,7 +13,7 @@ describe('Memory Storage', function() {
         let sm = getSm();
         sm.get(['i', 'not exist'])
             .then((result) => {
-                expect(result).to.eql(null);
+                expect(result).to.eql([false, null]);
             })
             .then(() => {
                 return sm.set(['i', 'exist'], 1);
@@ -25,7 +25,7 @@ describe('Memory Storage', function() {
                 return sm.get(['i', 'exist']);
             })
             .then((result) => {
-                expect(result).to.eql(1);
+                expect(result).to.eql([true, 1]);
             })
             .then(() => {
                 return sm.set(['i', 'exist'], 1);

@@ -61,7 +61,7 @@ export default class TimeBasedMapReduce {
 
         if (keysWithin.length === 0) {
             return this._storage.get([bucket, key])
-                .then(([found, v]) => { return v; });
+                .then(([, v]) => { return v; });
         }
 
         return Promise.all(R.map(

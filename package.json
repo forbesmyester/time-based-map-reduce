@@ -3,7 +3,7 @@
   "version": "0.5.4",
   "description": "A time based information framework",
   "scripts": {
-    "test": "node_modules/.bin/eslint test/*.js src/*.js && mocha --compilers js:babel/register",
+    "test": "node_modules/.bin/eslint test/*.js src/*.js && mocha --compilers js:babel/register test/index.js test/storage-memory.js # test/storage-mongo.js",
     "pretest": "echo '#!/bin/bash\nnpm test' >  .git/hooks/pre-commit && chmod +x  .git/hooks/pre-commit",
     "prepublish": "node_modules/.bin/babel src/Constants.js > Constants.js && node_modules/.bin/babel src/index.js > index.js && node_modules/.bin/babel src/storage-memory.js > storage-memory.js"
   },

@@ -20,9 +20,8 @@ export default function(/* here you pass in instances to db connections etc */) 
     }
 
     function set([bucket, key], value) {
-        // console.log("SET: ", [bucket, key], value);
         return get([bucket, key])
-            .then(([found, stored]) => {
+            .then(([found]) => {
                 if (!found) {
                     data = R.assocPath([bucket, key], value, data);
                     return STORED;
